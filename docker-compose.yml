@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: . # Utilise le répertoire courant comme contexte de build
+    ports:
+      - "8081:80" # Redirige le port 8081 de l'hôte vers le port 80 du conteneur
+    volumes:
+      - .:/var/www/html # Monte le répertoire courant dans /var/www/html du conteneur pour la persistance
+    depends_on:
+      - db # Le service web dépend du service db (base de données)
+    networks:
+      - app-network # Associe ce service au réseau app-network
+
+  db:
+    image: mysql:8.0 # Utilise l'image officielle de MySQL version 8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Mot de passe pour l'utilisateur root de MySQL
+      MYSQL_DATABASE: formation # Crée la base de données nommée 'formation' à l'initialisation
+    ports:
+      - "3306:3306" # Redirige le port 3306 de l'hôte vers le port 3306 du conteneur
+    volumes:
+      - db_data:/var/lib/mysql # Persistance des données de la base de données
+    networks:
+      - app-network # Associe ce service au réseau app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin # Utilise l'image officielle de PhpMyAdmin
+    container_name: phpmyadmin # Nom du conteneur PhpMyAdmin
+    environment:
+      PMA_ARBITRARY: 1 # Permettre des connexions arbitraires à des serveurs MySQL
+      PMA_HOST: db # Le nom d'hôte du service de base de données MySQL
+      PMA_USER: root # Nom d'utilisateur MySQL par défaut pour PhpMyAdmin
+      PMA_PASSWORD: root # Mot de passe pour l'utilisateur root de MySQL
+    ports:
+      - "8082:80" # Redirige le port 8082 de l'hôte vers le port 80 du conteneur PhpMyAdmin
+    depends_on:
+      - db # Le service PhpMyAdmin dépend du service db (base de données)
+    networks:
+      - app-network # Associe ce service au réseau app-network
+
+volumes:
+  db_data: # Volume pour persister les données de la base de données
+
+networks:
+  app-network:
+    driver: bridge # Utilise le pilote de réseau bridge

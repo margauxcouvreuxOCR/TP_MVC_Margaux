@@ -1,0 +1,34 @@
+### Documentation du Projet de Gestion des Stagiaires ###
+
+* Introduction *
+    -   Ce projet est une application web de gestion des stagiaires utilisant PHP, MySQL, et Docker. Il permet l'ajout, la modification et la suppression de stagiaires via une interface web simple.
+
+* Prérequis *
+    -   Docker et Docker Compose doivent être installés sur votre machine.
+
+* Installation et Configuration * 
+    1-  Décompresser le fichier ZIP : Décompressez le fichier ZIP contenant le projet dans un répertoire de votre choix.
+    2-  Configurer l'environnement Docker : Assurez-vous que les ports 8081 (pour l'application) et 8082 (pour PhpMyAdmin) ne sont pas utilisés par d'autres services sur votre machine.
+    3-  Construire les conteneurs Docker : docker-compose build
+    4-  Démarrer les conteneurs Docker : docker-compose up
+
+* Accéder à l'Application *
+    -   Application Web : L'application est accessible via le navigateur à l'adresse suivante : http://localhost:8081
+    -   PhpMyAdmin : PhpMyAdmin est accessible via le navigateur à l'adresse suivante : http://localhost:8082
+
+* Utilisation de l'Application *
+    1-  Affichage de la Liste des Stagiaires : En accédant à http://localhost:8081, vous verrez une liste des stagiaires existants.
+    2-  Ajouter un Stagiaire : Cliquez sur le bouton "Ajouter un stagiaire". Remplissez le formulaire avec le nom et le prénom du stagiaire. Cliquez sur "Envoyer" pour ajouter le stagiaire.
+    3-  Modifier un Stagiaire : Cliquez sur le nom d'un stagiaire dans la liste pour accéder au formulaire de modification. Modifiez les informations nécessaires et cliquez sur "Envoyer" pour enregistrer les modifications.
+    4-  Supprimer un Stagiaire : Cliquez sur le bouton "Supprimer" à côté du stagiaire que vous souhaitez supprimer.
+
+* Déconnexion *
+    -   Arrêter les conteneurs Docker : Pour arrêter les conteneurs, utilisez la commande suivante : docker-compose down
+
+* Dépannage *
+    -   Erreur de connexion à la base de données : Vérifiez que le service MySQL fonctionne correctement et que les informations d'identification sont correctes.
+    -   Problème d'accès à PhpMyAdmin : Vérifiez que le conteneur PhpMyAdmin est en cours d'exécution.
+
+* Conclusion *
+    -   Ce projet de gestion des stagiaires est conçu pour être facilement déployé et utilisé grâce à Docker. 
+    -   Si vous avez des questions ou rencontrez des problèmes, email à : mazaleyras.margaux@gmail.com !
